@@ -1,0 +1,10 @@
+.center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.box {
+    min-height: 600px;
+}

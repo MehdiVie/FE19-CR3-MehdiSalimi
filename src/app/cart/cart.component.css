@@ -1,0 +1,67 @@
+.center {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    min-height: 600px;
+    
+}
+
+.main_2 {
+    top: 50px;
+    right: 0;
+    position: fixed;
+}
+
+.main_1 .header {
+    border : solid 1px black;
+    font-weight: bold;
+    
+}
+
+.main_2 .header {
+    border : solid 1px black;
+    font-weight: bold;
+    
+}
+
+.main_2 .prices {
+    font-weight: bold;
+    border : solid 1px black;
+}
+
+.main_2 .form {
+    margin-top: 30px;
+}
+
+.delete_icon {
+    height: 50px;
+}
+
+.item img {
+    width : 200px;
+}
+
+.item .img {
+    
+    text-align: center;
+    padding: 10px;
+}
+
+.item {
+    display: flex;
+    border : solid 1px black;
+}
+
+.item .desc {
+    text-align: left;
+    width : 800px;
+    padding: 10px;
+}
+
+.item .price {
+    font-weight: bold;
+    white-space: nowrap;
+    padding: 10px;
+}

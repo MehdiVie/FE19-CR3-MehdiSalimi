@@ -1,0 +1,23 @@
+<div class="box">
+<div class="center">
+  <div class="card" style="width: 18rem; ">
+      <img src="/assets/images/{{menuItem.image}}" class="card-img-top" >
+      <div class="card-body">
+        <h5 class="card-title center">{{menuItem.name}}</h5>
+        <p class="card-text">{{menuItem.description}}</p>
+        <div class="text-success fw-bold veg fs-5" >
+            <div *ngIf="(menuItem.veg); then thenBlock1"></div>
+            <ng-template #thenBlock1>Veg!</ng-template>
+        </div>
+        <p class="card-text fw-bold veg fs-5">{{menuItem.price | currency }}</p>
+      <div class="down">
+        <div *ngIf="(menuItem.available); then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+          <button class="btn btn-success" (click)="addToCart()" >Order</button>
+        </ng-template>  
+        <ng-template #elseBlock ><span class="text-danger fw-bold ">Not Available!</span></ng-template>
+      </div>
+      </div>
+  </div>
+</div>
+</div>

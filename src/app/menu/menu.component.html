@@ -1,0 +1,37 @@
+
+<div class="container">
+  
+  <div class="header">Our Specialties</div>
+  
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <div *ngFor="let item of menu index as itemId ">
+
+    <div class="item">
+        <div class="card" style="width: 18rem; ">
+            <img src="/assets/images/{{item.image}}" class="card-img-top" >
+            <div class="card-body">
+              <h5 class="card-title center">{{item.name}}</h5>
+              <div class="text-success fw-bold veg fs-5" >
+                  <div *ngIf="(item.veg); then thenBlock1"></div>
+                  <ng-template #thenBlock1>Veg!</ng-template>
+              </div>
+            <div class="down">
+              <div *ngIf="(item.available); then thenBlock else elseBlock"></div>
+              <ng-template #thenBlock>
+                <button routerLink="/details/{{itemId}}" class="btn btn-primary">Detail</button>
+                <button (click)="redirect(itemId)" class="btn btn-success">Order</button>
+              </ng-template>  
+              <ng-template #elseBlock ><span class="text-danger fw-bold ">Not Available!</span></ng-template>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
+
+</div>
+
+
+
+

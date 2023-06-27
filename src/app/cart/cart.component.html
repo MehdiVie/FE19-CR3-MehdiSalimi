@@ -1,0 +1,84 @@
+<div class="center">
+
+    <div class="row row-cols-lg-2 row-cols-md-2">
+    <div class="main_1" *ngIf="(total>0)">
+        <div class="header">
+        Cart - {{cartLenght}} item(s)
+        </div>
+        <div class="item" *ngFor="let item of cartItems index as id ">
+            <div class="img">
+                <img src="/assets/images/{{item.image}}" >
+            </div>
+            <div class="desc">
+                {{item.name}}
+                <br>
+                {{item.description}}
+            </div>
+            <div class="price">
+                Price : {{item.price | currency}}
+                <br>
+                <span *ngIf="!(submitFlag)">
+                    <button (click)="delete(id)" class="btn btn-danger">Delete</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="main_2">
+        <div class="header">
+            Summary
+        </div>
+        <div class="prices">
+            Products : {{total | currency }}
+            <br>
+            Discount (min $40): 
+            <div *ngIf="(total) >=40; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>-{{((total)*0.15).toFixed(2) | currency  }}</ng-template>
+                <ng-template #elseBlock>$0.00</ng-template>
+            <br>
+            10% Service : {{(total/10) | currency }}
+        </div>
+        <div class="prices">
+            Total Amount : 
+            <div *ngIf="(total) >=40; then thenBlock1 else elseBlock1"></div>
+                <ng-template #thenBlock1>{{(total*0.85+((total*0.85)/10)).toFixed(2) | currency }}</ng-template>
+                <ng-template #elseBlock1>{{(total/10+total) | currency }}</ng-template>
+        </div>
+        <div *ngIf="(total>0) && !(finishFlag) && !(submitFlag)">
+            <div><a routerLink="/menu" class="btn btn-primary mb-3 mt-3">Continue Order!</a></div>
+            <div><a (click)="finish();" class="btn btn-warning pl-3 pr-3">Finish Order!!</a></div>
+        </div>
+        <div *ngIf="(total>0) && (finishFlag) && !(submitFlag)" class="form" >
+            <h4 class="text-black fw-bold">Order Form!</h4>
+            <form  class="needs-validation" novalidate [formGroup]="checkOutForm">
+                <div class="mb-3">
+                  <label for="customer_name" class="form-label">Your Name:</label>
+                  <input type="text" class="form-control" formControlName="customer_name" id="customer_name" placeholder="Name" required>
+                  <div class="invalid-feedback">
+                    Please write customer name!
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label">Your Address:</label>
+                  <input type="text" class="form-control" formControlName="address" id="address" placeholder="Address" required>
+                  <div class="invalid-feedback">
+                    Please write address!
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="onSubmit()">Purchase!</button>
+            </form>
+        </div>
+        <div *ngIf="(submitFlag)">
+            <h5 class="text-success">
+            Customer Name : {{this.checkOutForm.value.customer_name}};
+            <br>
+            Address : {{this.checkOutForm.value.address}};
+            <br>
+            We Will Send Your Order as soon as possible!
+            </h5>
+        </div>
+    </div>
+    </div>
+
+
+    
+</div>
